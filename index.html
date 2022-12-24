@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <style>
+        #form{
+            background-color: #f4f4f4f4;
+            padding:10px;
+            width:50%;
+            margin:25px;
+        }
+        .btn{
+            background-color: black;
+            color:aliceblue;
+            width:50%;
+            border-radius:5px;
+        }
+        ul{
+            list-style:none;
+        }
+        ul li{
+            padding:10px;
+            background-color:#f4f4f4f4;
+            margin:10px;
+            width:50%;
+        }
+        .main-heading{
+            width:50%;
+            text-align:center;
+        }
+        .bg-dark{
+            background-color: black;
+        }
+    </style>
+</head>
+<body id="container">
+<div>
+    <h1 class="main-heading">JS For Begineers</h1>
+    <section>
+    <form id="form" onsubmit="saveToStorage(event)">
+        <h1>Add User</h1>
+        <label for="text">Name:</label><br>
+        <input type="text" id="text"><br><br>
+        <label for="text">Email:</label><br>
+        <input type="text" id="email"><br><br>
+        <input type="submit" value="submit" class="btn" id="button">
+        <p id="error-msg" class="error"></p>
+    </form>
+    <!-- <ul class="items" id="items">
+        <li id="item1">Item 1</li>
+        <li id="item2">Item 2</li>
+        <li id="item3">Item 3</li>
+
+    </ul> -->
+</section>
+</div>
+<script>
+    function saveToStorage(event){
+        event.preventDefault();
+        let name = document.getElementById("text").value;
+        let email = document.getElementById("email").value;
+        localStorage.setItem("name",name);
+        localStorage.setItem("email",email);
+
+
+    }
+    // const formVal = document.getElementById("form");
+    // const btnVal = document.getElementById("button");
+    // const backgrd = document.getElementById("container");
+
+    // btnVal.addEventListener("click", (e)=>{
+    //     e.preventDefault();
+    //     formVal.style.background="grey";
+    //     backgrd.style.background="black";
+    // });
+    // btnVal.addEventListener("mouseover", (e)=>{
+    //     e.preventDefault();
+    //     let listVal1 = document.getElementById("item1");
+    //     listVal1.textContent="This is list item-1";
+    //     listVal1.style.color="green";
+
+    //  });
+
+    //  btnVal.addEventListener("mouseout", (e)=>{
+    //     e.preventDefault();
+    //     let listVal2 = document.getElementById("item2");
+    //     listVal2.textContent="This is list item-2";
+    //     listVal2.style.color="red";
+    //  });
+    // //-------------2----------------
+    // const textVal = document.getElementById("text");
+    // const emailVal = document.getElementById("email");
+    // const errorVal = document.getElementById("error-msg");
+    // formVal.addEventListener("submit",onSubmit);
+    // function onSubmit(e){
+    //     e.preventDefault();
+    //     if(textVal.value === "" || emailVal.value === ""){
+    //         errorVal.textContent = "Please enter all fields";
+    //         errorVal.style.color="red";
+    //         setTimeout(() => errorVal.remove(),3000);
+    //     }else{
+    //         console.log(textVal.value);
+    //         console.log(emailVal.value);
+    //     }
+    //     textVal.value = "";
+    //     emailVal.value = "";
+    // }  
+</script>
+</body>
+</html>

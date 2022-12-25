@@ -71,17 +71,43 @@
         localStorage.setItem(obj.email,objSerialization);
 
         Object.keys(localStorage).forEach((key)=>{
-            console.log(JSON.parse(localStorage.getItem(key)));
+           // console.log(JSON.parse(localStorage.getItem(key)));
         });
         userDetailsOnScreen(obj);
 
     }
     function userDetailsOnScreen(user){
-        let items = document.getElementById("listOfItems");
-        let childHtml = `<li> ${user.name} - ${user.email} </li>`;
-        items.innerHTML = items.innerHTML + childHtml;
-        items.appendChild(li);
+        document.getElementById("email").value = "";
+        document.getElementById("text").value = "";
 
+        if(localStorage.getItem(user.email) !==null){
+           removeUserFromscreen(user.email);
+        }
+        let items = document.getElementById("listOfItems");
+        let childHtml = `<li id=${user.email}> ${user.name} - ${user.email}
+                        <button onclick=deleteUser('${user.email}')>Delete User</button> 
+                        <button onclick=editUser('${user.email}','${user.name}')>Edit</button>
+                        </li>`;
+        items.innerHTML = items.innerHTML + childHtml;
+
+    }
+    function deleteUser(emailId){
+        console.log(emailId);
+        localStorage.removeItem(emailId);
+        removeUserFromscreen(emailId);
+    }
+    function removeUserFromscreen(emailId){
+        let parentNode = document.getElementById("listOfItems");
+        let childNOde = document.getElementById(emailId);
+        //console.log(childNOde);
+        if(childNOde){
+            parentNode.removeChild(childNOde);
+        }
+    }
+    function editUser(emailId,name){
+        document.getElementById("email").value = emailId;
+        document.getElementById("text").value = name;
+        deleteUser(emailId);
     }
 
     // function saveToStorage(event){

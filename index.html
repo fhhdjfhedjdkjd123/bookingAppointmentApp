@@ -48,6 +48,7 @@
         <input type="submit" value="submit" class="btn" id="button">
         <p id="error-msg" class="error"></p>
     </form>
+    <ul id="listOfItems"></ul>
     <!-- <ul class="items" id="items">
         <li id="item1">Item 1</li>
         <li id="item2">Item 2</li>
@@ -58,6 +59,8 @@
 </div>
 <script>
     function saveToStorage(event){
+        event.preventDefault();
+        let form = document.getElementById('form');
         let name = document.getElementById("text").value;
         let email = document.getElementById("email").value;
         let obj = {
@@ -65,8 +68,20 @@
             email:email
         }
         let objSerialization = JSON.stringify(obj);
-        localStorage.setItem("myObj",objSerialization);
-        let objDeserialization = JSON.parse(localStorage.getItem("myObj"));
+        localStorage.setItem(obj.email,objSerialization);
+
+        Object.keys(localStorage).forEach((key)=>{
+            console.log(JSON.parse(localStorage.getItem(key)));
+        });
+        userDetailsOnScreen(obj);
+
+    }
+    function userDetailsOnScreen(user){
+        let items = document.getElementById("listOfItems");
+        let childHtml = `<li> ${user.name} - ${user.email} </li>`;
+        items.innerHTML = items.innerHTML + childHtml;
+        items.appendChild(li);
+
     }
     // function saveToStorage(event){
     //     event.preventDefault();

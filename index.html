@@ -67,13 +67,21 @@
             name:name,
             email:email
         }
-        let objSerialization = JSON.stringify(obj);
-        localStorage.setItem(obj.email,objSerialization);
+        axios.post("https://crudcrud.com/api/966f7f5f35d041049bd16b6621c67879/appointmentData",obj)
+        .then((response)=>{
+            userDetailsOnScreen(response.data);
+            //console.log(response);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+        // let objSerialization = JSON.stringify(obj);
+        // localStorage.setItem(obj.email,objSerialization);
 
-        Object.keys(localStorage).forEach((key)=>{
-           // console.log(JSON.parse(localStorage.getItem(key)));
-        });
-        userDetailsOnScreen(obj);
+        // Object.keys(localStorage).forEach((key)=>{
+        //    // console.log(JSON.parse(localStorage.getItem(key)));
+        // });
+        //userDetailsOnScreen(obj);
 
     }
     function userDetailsOnScreen(user){
@@ -109,58 +117,8 @@
         document.getElementById("text").value = name;
         deleteUser(emailId);
     }
-
-
-    // function saveToStorage(event){
-    //     event.preventDefault();
-    //     let name = document.getElementById("text").value;
-    //     let email = document.getElementById("email").value;
-    //     localStorage.setItem("name",name);
-    //     localStorage.setItem("email",email);
-
-
-    // }
-    // const formVal = document.getElementById("form");
-    // const btnVal = document.getElementById("button");
-    // const backgrd = document.getElementById("container");
-
-    // btnVal.addEventListener("click", (e)=>{
-    //     e.preventDefault();
-    //     formVal.style.background="grey";
-    //     backgrd.style.background="black";
-    // });
-    // btnVal.addEventListener("mouseover", (e)=>{
-    //     e.preventDefault();
-    //     let listVal1 = document.getElementById("item1");
-    //     listVal1.textContent="This is list item-1";
-    //     listVal1.style.color="green";
-
-    //  });
-
-    //  btnVal.addEventListener("mouseout", (e)=>{
-    //     e.preventDefault();
-    //     let listVal2 = document.getElementById("item2");
-    //     listVal2.textContent="This is list item-2";
-    //     listVal2.style.color="red";
-    //  });
-    // //-------------2----------------
-    // const textVal = document.getElementById("text");
-    // const emailVal = document.getElementById("email");
-    // const errorVal = document.getElementById("error-msg");
-    // formVal.addEventListener("submit",onSubmit);
-    // function onSubmit(e){
-    //     e.preventDefault();
-    //     if(textVal.value === "" || emailVal.value === ""){
-    //         errorVal.textContent = "Please enter all fields";
-    //         errorVal.style.color="red";
-    //         setTimeout(() => errorVal.remove(),3000);
-    //     }else{
-    //         console.log(textVal.value);
-    //         console.log(emailVal.value);
-    //     }
-    //     textVal.value = "";
-    //     emailVal.value = "";
-    // }  
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
 </body>
 </html>
